@@ -4,32 +4,27 @@
 #
 Name     : R-themis
 Version  : 0.1.4
-Release  : 1
+Release  : 2
 URL      : https://cran.r-project.org/src/contrib/themis_0.1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/themis_0.1.4.tar.gz
 Summary  : Extra Recipes Steps for Dealing with Unbalanced Data
 Group    : Development/Tools
 License  : MIT
-Requires: R-ParamHelpers
 Requires: R-RANN
+Requires: R-ROSE
 Requires: R-dplyr
 Requires: R-generics
-Requires: R-mlr
-Requires: R-modeldata
-Requires: R-parallelMap
 Requires: R-purrr
 Requires: R-recipes
 Requires: R-rlang
 Requires: R-tibble
+Requires: R-unbalanced
 Requires: R-withr
-BuildRequires : R-ParamHelpers
 BuildRequires : R-RANN
 BuildRequires : R-ROSE
 BuildRequires : R-dplyr
 BuildRequires : R-generics
-BuildRequires : R-mlr
 BuildRequires : R-modeldata
-BuildRequires : R-parallelMap
 BuildRequires : R-purrr
 BuildRequires : R-recipes
 BuildRequires : R-rlang
@@ -52,10 +47,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633374359
+export SOURCE_DATE_EPOCH=1633665882
 
 %install
-export SOURCE_DATE_EPOCH=1633374359
+export SOURCE_DATE_EPOCH=1633665882
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
