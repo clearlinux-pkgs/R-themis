@@ -4,7 +4,7 @@
 #
 Name     : R-themis
 Version  : 1.0.0
-Release  : 11
+Release  : 12
 URL      : https://cran.r-project.org/src/contrib/themis_1.0.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/themis_1.0.0.tar.gz
 Summary  : Extra Recipes Steps for Dealing with Unbalanced Data
