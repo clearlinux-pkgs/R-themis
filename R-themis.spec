@@ -4,10 +4,10 @@
 # Using build pattern: R
 #
 Name     : R-themis
-Version  : 1.0.1
-Release  : 15
-URL      : https://cran.r-project.org/src/contrib/themis_1.0.1.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/themis_1.0.1.tar.gz
+Version  : 1.0.2
+Release  : 16
+URL      : https://cran.r-project.org/src/contrib/themis_1.0.2.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/themis_1.0.2.tar.gz
 Summary  : Extra Recipes Steps for Dealing with Unbalanced Data
 Group    : Development/Tools
 License  : MIT
@@ -23,10 +23,10 @@ Requires: R-purrr
 Requires: R-recipes
 Requires: R-rlang
 Requires: R-tibble
+Requires: R-vctrs
 Requires: R-withr
 BuildRequires : R-RANN
 BuildRequires : R-ROSE
-BuildRequires : R-dials
 BuildRequires : R-dplyr
 BuildRequires : R-generics
 BuildRequires : R-glue
@@ -38,6 +38,7 @@ BuildRequires : R-purrr
 BuildRequires : R-recipes
 BuildRequires : R-rlang
 BuildRequires : R-tibble
+BuildRequires : R-vctrs
 BuildRequires : R-withr
 BuildRequires : buildreq-R
 # Suppress stripping binaries
@@ -50,16 +51,19 @@ said to be unbalanced. Many models produce a subpar performance on
 
 %prep
 %setup -q -n themis
+pushd ..
+cp -a themis buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681778577
+export SOURCE_DATE_EPOCH=1692061161
 
 %install
-export SOURCE_DATE_EPOCH=1681778577
+export SOURCE_DATE_EPOCH=1692061161
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -97,6 +101,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc . || :
 
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -140,33 +145,33 @@ R CMD check --no-manual --no-examples --no-codoc . || :
 /usr/lib64/R/library/themis/html/00Index.html
 /usr/lib64/R/library/themis/html/R.css
 /usr/lib64/R/library/themis/tests/testthat.R
+/usr/lib64/R/library/themis/tests/testthat/_snaps/adasyn.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/adasyn_impl.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/bsmote.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/bsmote_impl.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/downsample.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/extension_check.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/nearmiss.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/rose.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/smote.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/smote_impl.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/smotenc.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_adasyn.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_bsmote.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_downsample.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_nearmiss.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_rose.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_smote.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_tomek.md
-/usr/lib64/R/library/themis/tests/testthat/_snaps/step_upsample.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/tomek.md
 /usr/lib64/R/library/themis/tests/testthat/_snaps/tomek_impl.md
+/usr/lib64/R/library/themis/tests/testthat/_snaps/upsample.md
 /usr/lib64/R/library/themis/tests/testthat/test-S3-methods.R
+/usr/lib64/R/library/themis/tests/testthat/test-adasyn.R
 /usr/lib64/R/library/themis/tests/testthat/test-adasyn_impl.R
+/usr/lib64/R/library/themis/tests/testthat/test-bsmote.R
 /usr/lib64/R/library/themis/tests/testthat/test-bsmote_impl.R
+/usr/lib64/R/library/themis/tests/testthat/test-downsample.R
 /usr/lib64/R/library/themis/tests/testthat/test-extension_check.R
+/usr/lib64/R/library/themis/tests/testthat/test-nearmiss.R
+/usr/lib64/R/library/themis/tests/testthat/test-rose.R
+/usr/lib64/R/library/themis/tests/testthat/test-smote.R
 /usr/lib64/R/library/themis/tests/testthat/test-smote_impl.R
 /usr/lib64/R/library/themis/tests/testthat/test-smotenc.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_adasyn.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_bsmote.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_downsample.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_nearmiss.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_rose.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_smote.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_tomek.R
-/usr/lib64/R/library/themis/tests/testthat/test-step_upsample.R
+/usr/lib64/R/library/themis/tests/testthat/test-tomek.R
 /usr/lib64/R/library/themis/tests/testthat/test-tomek_impl.R
+/usr/lib64/R/library/themis/tests/testthat/test-upsample.R
 /usr/lib64/R/library/themis/tests/testthat/testthat-problems.rds
